@@ -10,11 +10,11 @@ func on_enter():
 
 func state_process(delta: float) -> void:
 	# Ejecutamos el movimiento del padre
-	father.movimiento_aliado1(delta)
+	father.movimiento_enemigo1(delta)
 	
 	# Comprobar si hemos llegado a la posición de la base (Solo eje X)
-	if father.posicion_base_enemiga != null:
-		var distancia_x = abs(father.global_position.x - father.posicion_base_enemiga.x)
+	if father.posicion_base_aliada != null:
+		var distancia_x = abs(father.global_position.x - father.posicion_base_aliada.x)
 		
 		# Log opcional para ver la distancia en consola (puedes borrarlo luego)
 		# print("Distancia X a la base: ", distancia_x)

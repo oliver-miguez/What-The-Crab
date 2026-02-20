@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cif6nwlfajhas" path="res://Demo/Scripts/Mapa/mapa_de_prueba.gd" id="1_ypj5t"]
 [ext_resource type="PackedScene" uid="uid://bm1o33sslrm2y" path="res://Demo/Escenas/Bases/BaseEnemiga.tscn" id="2_ypj5t"]
 [ext_resource type="PackedScene" uid="uid://dpejnbkrba3c8" path="res://Demo/UI/InterfazAliados/interfaz_de_aliados.tscn" id="4_8oadl"]
+[ext_resource type="PackedScene" uid="uid://du4crmvq4rgcr" path="res://Demo/Escenas/Bases/BaseAliada.tscn" id="4_46y34"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vqucq"]
 texture = ExtResource("1_yj61v")
@@ -137,6 +138,7 @@ texture = ExtResource("1_yj61v")
 
 [sub_resource type="TileSet" id="TileSet_k4fuk"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_vqucq")
 
 [node name="MapaDePrueba" type="Node2D" unique_id=117627811]
@@ -150,14 +152,11 @@ tile_set = SubResource("TileSet_k4fuk")
 
 [node name="Bases" type="Node" parent="." unique_id=649405916]
 
-[node name="BaseAliada" type="Sprite2D" parent="Bases" unique_id=647703429]
-modulate = Color(1, 1, 0, 1)
-position = Vector2(1070, 269)
-scale = Vector2(0.671875, 2.5781248)
-texture = ExtResource("1_yj61v")
-
 [node name="BaseEnemiga" parent="Bases" unique_id=1489047851 instance=ExtResource("2_ypj5t")]
 position = Vector2(100, 200)
+
+[node name="BaseAliada" parent="Bases" unique_id=1615237321 instance=ExtResource("4_46y34")]
+position = Vector2(1071, 197)
 
 [node name="SpawnAliados" type="Node" parent="." unique_id=1948808783]
 
@@ -167,7 +166,15 @@ position = Vector2(1061, 380)
 [node name="PosicionBaseEnemiga" type="Marker2D" parent="SpawnAliados" unique_id=198501794]
 position = Vector2(177, 418)
 
+[node name="PosicionBaseAliada" type="Marker2D" parent="SpawnAliados" unique_id=1558453545]
+position = Vector2(1060, 378)
+
+[node name="PuntoSpawneoEnemigos" type="Marker2D" parent="SpawnAliados" unique_id=303488019]
+position = Vector2(109, 386)
+
 [node name="AliadosInstanciados" type="Node" parent="." unique_id=876502541]
+
+[node name="EnemigosInstanciados" type="Node" parent="." unique_id=693690999]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=433999536]
 

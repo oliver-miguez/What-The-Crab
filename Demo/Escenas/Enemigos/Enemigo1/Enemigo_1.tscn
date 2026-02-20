@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bpknwwsudrb1c"]
+
+[ext_resource type="Script" uid="uid://bvjjjji81yt1" path="res://Demo/Scripts/Enemigos/Enemigo1/enemigo_1.gd" id="1_0nqgq"]
+[ext_resource type="Texture2D" uid="uid://d4acfivp4y6ro" path="res://icon.svg" id="1_jumn3"]
+[ext_resource type="Script" uid="uid://d1frdl7rx5kgp" path="res://Demo/Scripts/FSM/fsm.gd" id="2_0nqgq"]
+[ext_resource type="Script" uid="uid://blxrwia66cekt" path="res://Demo/Scripts/Enemigos/Enemigo1/Estados/andar.gd" id="4_7j64q"]
+[ext_resource type="Script" uid="uid://bp70th4pg74yd" path="res://Demo/Scripts/Enemigos/Enemigo1/Estados/atacar.gd" id="5_0nqgq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83r5w"]
+size = Vector2(52, 52)
+
+[node name="Enemigo1" type="CharacterBody2D" unique_id=51383049 groups=["Enemigos"]]
+collision_layer = 2
+script = ExtResource("1_0nqgq")
+
+[node name="AnimacionesEnemigo1" type="AnimationPlayer" parent="." unique_id=1010460920]
+
+[node name="ArteEnemigo1" type="Sprite2D" parent="." unique_id=670102927]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_jumn3")
+
+[node name="ColisionNormal" type="CollisionShape2D" parent="." unique_id=1711203989]
+shape = SubResource("RectangleShape2D_83r5w")
+debug_color = Color(0.87397546, 0, 0.13811103, 0.41960785)
+
+[node name="FSM" type="Node" parent="." unique_id=732724212 node_paths=PackedStringArray("father", "animation_player", "current_state")]
+script = ExtResource("2_0nqgq")
+father = NodePath("..")
+animation_player = NodePath("../AnimacionesEnemigo1")
+current_state = NodePath("Andar")
+
+[node name="Andar" type="Node" parent="FSM" unique_id=351574281 node_paths=PackedStringArray("estado_atacar")]
+script = ExtResource("4_7j64q")
+estado_atacar = NodePath("../Atacar")
+
+[node name="Atacar" type="Node" parent="FSM" unique_id=1207056709 node_paths=PackedStringArray("estado_andar")]
+script = ExtResource("5_0nqgq")
+estado_andar = NodePath("../Andar")

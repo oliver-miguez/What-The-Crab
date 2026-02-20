@@ -4,11 +4,13 @@
 [ext_resource type="Script" uid="uid://by607a4aovecd" path="res://Demo/Scripts/Aliados/Aliado1/aliado_1.gd" id="1_qrbtp"]
 [ext_resource type="Script" uid="uid://d1frdl7rx5kgp" path="res://Demo/Scripts/FSM/fsm.gd" id="3_mfcte"]
 [ext_resource type="Script" uid="uid://eik6ymycoaxl" path="res://Demo/Scripts/Aliados/Aliado1/EstadosAliado1/walk.gd" id="4_8oujc"]
+[ext_resource type="Script" uid="uid://ocq1ang44nko" path="res://Demo/Scripts/Aliados/Aliado1/EstadosAliado1/atacar.gd" id="5_fgfi6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_835e7"]
 size = Vector2(52, 52)
 
-[node name="Aliado1" type="CharacterBody2D" unique_id=1256920907]
+[node name="Aliado1" type="CharacterBody2D" unique_id=1256920907 groups=["Aliados"]]
+collision_layer = 2
 script = ExtResource("1_qrbtp")
 
 [node name="AnimacionesAliado1" type="AnimationPlayer" parent="." unique_id=422694258]
@@ -25,7 +27,12 @@ debug_color = Color(0.7464558, 0.20853761, 1, 0.41960785)
 script = ExtResource("3_mfcte")
 father = NodePath("..")
 animation_player = NodePath("../AnimacionesAliado1")
-current_state = NodePath("Walk")
+current_state = NodePath("Andar")
 
-[node name="Walk" type="Node" parent="FSM" unique_id=1403114352]
+[node name="Andar" type="Node" parent="FSM" unique_id=1403114352 node_paths=PackedStringArray("estado_atacar")]
 script = ExtResource("4_8oujc")
+estado_atacar = NodePath("../Atacar")
+
+[node name="Atacar" type="Node" parent="FSM" unique_id=1957272806 node_paths=PackedStringArray("estado_andar")]
+script = ExtResource("5_fgfi6")
+estado_andar = NodePath("../Andar")

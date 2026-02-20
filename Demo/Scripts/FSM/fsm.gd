@@ -11,7 +11,11 @@ func _ready():
 			child.father= father
 			child.animation_player= animation_player
 			array_states.append(child)
-
+	
+	if current_state:
+		print("FSM: Iniciando en estado ", current_state.name)
+		current_state.on_enter()
+			
 func _physics_process(_delta):
 	current_state.state_process(_delta)
 	if current_state.next_state!= null:				#Si hay un estado nuevo 

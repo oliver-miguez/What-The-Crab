@@ -2,17 +2,35 @@ extends "res://Demo/Scripts/Globales/Estados/GlobalState.gd"
 
 # Definir los estados a los que puede cambiar
 @export var estado_andar:State
-const RANGO_PERDIDA = 180.0 # Un poco más que el de ataque para evitar rebotes de estado
+const RANGO_PERDIDA = 180.0
+
+var tiempo_ultimo_ataque = 0.0
 
 func on_enter():
 	print("Estado: Atacando!")
-	# Aquí podrías poner: animation_player.play("attack")
+	# Reiniciar el cronómetro de ataque al entrar para atacar inmediatamente
+	tiempo_ultimo_ataque = father.intervalo_ataque 
 
-func state_process(_delta: float) -> void:
-	# Aquí iría la lógica de daño a la base (temporizadores, animaciones, etc.)
-	# Como es una base estática, no necesitamos volver a caminar a menos que 
-	# el objetivo cambie o sea destruido.
-	pass
+func state_process(delta: float) -> void:
+	# Lógica de daño periódico
+	tiempo_ultimo_ataque += delta
+	
+	if tiempo_ultimo_ataque >= father.intervalo_ataque:
+		atacar_base()
+		tiempo_ultimo_ataque = 0.0
+	
+	# Comprobar si la base aún existe
+	var base = GlobalPosicionSpawneo.base_enemiga_nodo
+	if not is_instance_valid(base):
+		next_state = estado_andar
+
+func atacar_base():
+	var base = GlobalPosicionSpawneo.base_enemiga_nodo
+	if is_instance_valid(base):
+		base.recibir_daño(father.daño)
+	else:
+		# Si la base ya no existe, volvemos a caminar (o lo que corresponda)
+		next_state = estado_andar
 
 func on_exit():
 	pass

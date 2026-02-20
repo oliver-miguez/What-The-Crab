@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://bm1o33sslrm2y"]
 
 [ext_resource type="Texture2D" uid="uid://d4acfivp4y6ro" path="res://icon.svg" id="1_lsjuc"]
+[ext_resource type="Script" uid="uid://bip7skshk06bt" path="res://Demo/Scripts/Bases/BaseEnemiga/base_enemiga.gd" id="1_v74cg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lsjuc"]
 size = Vector2(170, 269)
 
 [node name="BaseEnemiga" type="Node2D" unique_id=1489047851]
+script = ExtResource("1_v74cg")
 
 [node name="DiseñoBase" type="Sprite2D" parent="." unique_id=1646778588]
 modulate = Color(0.8065392, 0, 0.21309242, 1)
@@ -18,3 +20,13 @@ texture = ExtResource("1_lsjuc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeteccionAliados" unique_id=820850572]
 position = Vector2(-1, 124.5)
 shape = SubResource("RectangleShape2D_lsjuc")
+
+[node name="Vida" type="Label" parent="." unique_id=1305539335]
+offset_left = -20.0
+offset_top = -89.0
+offset_right = 20.0
+offset_bottom = -66.0
+text = "VIDA"
+
+[connection signal="body_entered" from="DeteccionAliados" to="." method="_on_deteccion_aliados_body_entered"]
+[connection signal="body_exited" from="DeteccionAliados" to="." method="_on_deteccion_aliados_body_exited"]

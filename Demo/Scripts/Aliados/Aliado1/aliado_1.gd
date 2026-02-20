@@ -4,6 +4,9 @@ class_name Aliado1
 const GRAVITY_VALUE = 980
 const SPEED_VALUE = 100
 
+@export var daño = 10
+@export var intervalo_ataque = 2.0 # Un golpe por segundo
+
 var posicion_base_enemiga
 
 var velocidad_actual = Vector2.ZERO

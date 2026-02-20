@@ -22,15 +22,15 @@ func state_process(delta: float) -> void:
 	# Comprobar si la base aún existe
 	var base = GlobalPosicionSpawneo.base_enemiga_nodo
 	if not is_instance_valid(base):
-		next_state = estado_andar
-
+		#next_state = estado_andar
+		return
 func atacar_base():
 	var base = GlobalPosicionSpawneo.base_enemiga_nodo
 	if is_instance_valid(base):
 		base.recibir_daño(father.daño)
 	else:
 		# Si la base ya no existe, volvemos a caminar (o lo que corresponda)
-		next_state = estado_andar
-
+		#next_state = estado_andar
+		return
 func on_exit():
 	pass

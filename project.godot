@@ -27,10 +27,6 @@ folder_colors={
 "res://Scripts/": "red"
 }
 
-[global_group]
-
-Aliados="Todas las unidades aliadas disponibles"
-
 [layer_names]
 
 2d_physics/layer_1="Mapa"

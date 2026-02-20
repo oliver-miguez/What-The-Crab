@@ -6,7 +6,7 @@ class_name MapaDePrueba
 
 func _ready() -> void:
 	GlobalPosicionSpawneo.posicion_spawneo = punto_spawneo_aliados.global_position
-	GlobalPosicionSpawneo.posicion_base_enemiga = posicion_base_enemiga.position
+	GlobalPosicionSpawneo.posicion_base_enemiga = posicion_base_enemiga.global_position
 	
 func _physics_process(_delta: float) -> void:
 	pass

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bm1o33sslrm2y"]
+
+[ext_resource type="Texture2D" uid="uid://d4acfivp4y6ro" path="res://icon.svg" id="1_lsjuc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsjuc"]
+size = Vector2(170, 269)
+
+[node name="BaseEnemiga" type="Node2D" unique_id=1489047851]
+
+[node name="DiseñoBase" type="Sprite2D" parent="." unique_id=1646778588]
+modulate = Color(0.8065392, 0, 0.21309242, 1)
+position = Vector2(-2.0000029, 83)
+scale = Vector2(0.7421875, 2.3515625)
+texture = ExtResource("1_lsjuc")
+
+[node name="DeteccionAliados" type="Area2D" parent="." unique_id=1986448871]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeteccionAliados" unique_id=820850572]
+position = Vector2(-1, 124.5)
+shape = SubResource("RectangleShape2D_lsjuc")

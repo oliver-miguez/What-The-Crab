@@ -27,6 +27,11 @@ folder_colors={
 "res://Scripts/": "red"
 }
 
+[layer_names]
+
+2d_physics/layer_1="Mapa"
+2d_physics/layer_2="Personajes"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

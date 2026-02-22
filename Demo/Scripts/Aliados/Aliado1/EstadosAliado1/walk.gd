@@ -1,7 +1,7 @@
 extends "res://Demo/Scripts/Globales/Estados/GlobalState.gd"
 
 # Definir los estados a los que puede cambiar
-@export var estado_atacar:State
+@export var estado_atacar_base:State
 const RANGO_ATAQUE = 150.0 # Distancia para dejar de caminar e iniciar ataque
 
 func on_enter():
@@ -20,7 +20,7 @@ func state_process(delta: float) -> void:
 		# print("Distancia X a la base: ", distancia_x)
 		
 		if distancia_x <= 15.0: # Si estamos a 15px de distancia horizontal
-			next_state = estado_atacar
+			next_state = estado_atacar_base
 
 func on_exit():
 	pass

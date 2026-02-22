@@ -12,6 +12,8 @@ var posicion_base_enemiga
 var velocidad_actual = Vector2.ZERO
 var ultima_posicion = Vector2.ZERO
 
+var vida = 100
+
 func _ready() -> void:
 	posicion_base_enemiga = GlobalPosicionSpawneo.posicion_base_enemiga
 	ultima_posicion = global_position
@@ -39,3 +41,19 @@ func movimiento_aliado1(delta):
 	
 func añadir_gravedad(delta):
 	position.y += GRAVITY_VALUE * delta
+
+func recibir_daño(cantidad:int):
+	vida = vida - cantidad
+	if vida <= 0:
+		muerto()
+		
+func muerto():
+	self.queue_free()
+	
+func _on_area_daño_body_entered(body):
+	if body.is_in_group("Enemigos"):
+		print("[Aliado], estoy en combate")
+		
+func _on_area_daño_body_exited(body):
+	if body.is_in_group("Enemigos"):
+		print("[Aliado],O e muerto o lo e matado")

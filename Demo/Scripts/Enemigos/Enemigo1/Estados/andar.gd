@@ -1,8 +1,8 @@
 extends "res://Demo/Scripts/Globales/Estados/GlobalState.gd"
+class_name Andar
 
 # Definir los estados a los que puede cambiar
-@export var estado_atacar:State
-const RANGO_ATAQUE = 150.0 # Distancia para dejar de caminar e iniciar ataque
+@export var estado_atacar_base_aliada:State
 
 func on_enter():
 	print("Estado: Caminando hacia el objetivo")
@@ -16,11 +16,11 @@ func state_process(delta: float) -> void:
 	if father.posicion_base_aliada != null:
 		var distancia_x = abs(father.global_position.x - father.posicion_base_aliada.x)
 		
-		# Log opcional para ver la distancia en consola (puedes borrarlo luego)
+		# Log opcional para ver la distancia en consola
 		# print("Distancia X a la base: ", distancia_x)
 		
 		if distancia_x <= 15.0: # Si estamos a 15px de distancia horizontal
-			next_state = estado_atacar
+			next_state = estado_atacar_base_aliada
 
 func on_exit():
 	pass

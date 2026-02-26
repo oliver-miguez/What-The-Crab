@@ -9,8 +9,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83r5w"]
 size = Vector2(52, 52)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nqgq"]
+radius = 44.04543
+
 [node name="Enemigo1" type="CharacterBody2D" unique_id=51383049 groups=["Enemigos"]]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_0nqgq")
 
 [node name="AnimacionesEnemigo1" type="AnimationPlayer" parent="." unique_id=1010460920]
@@ -36,3 +40,21 @@ estado_atacar = NodePath("../Atacar")
 [node name="Atacar" type="Node" parent="FSM" unique_id=1207056709 node_paths=PackedStringArray("estado_andar")]
 script = ExtResource("5_0nqgq")
 estado_andar = NodePath("../Andar")
+
+[node name="AreaDeAtaque" type="Area2D" parent="." unique_id=1128941559]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDeAtaque" unique_id=1172373371]
+shape = SubResource("CircleShape2D_0nqgq")
+debug_color = Color(0.99304193, 0, 0.22099805, 0.41960785)
+
+[node name="LabelVida" type="Label" parent="." unique_id=237262242]
+offset_left = -16.0
+offset_top = -49.0
+offset_right = 24.0
+text = "Vida
+"
+
+[connection signal="body_entered" from="AreaDeAtaque" to="." method="_on_area_de_ataque_body_entered"]
+[connection signal="body_exited" from="AreaDeAtaque" to="." method="_on_area_de_ataque_body_exited"]

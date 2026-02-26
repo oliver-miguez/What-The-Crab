@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://yfa81e0jshke"]
+
+[ext_resource type="Texture2D" uid="uid://d2l3obo0nihi2" path="res://Arte/Aliado1/ataque.png" id="1_i8yav"]
+[ext_resource type="Script" uid="uid://b10h3cdpmknoe" path="res://Demo/Scripts/Aliados/Aliado2/aliado_2(test).gd" id="1_osm1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osm1b"]
+
+[node name="Aliado2(Test)" type="CharacterBody2D" unique_id=1171319686]
+script = ExtResource("1_osm1b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1554812905]
+
+[node name="Ataque" type="Sprite2D" parent="." unique_id=289667868]
+position = Vector2(7, 1)
+texture = ExtResource("1_i8yav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1533762015]
+shape = SubResource("RectangleShape2D_osm1b")

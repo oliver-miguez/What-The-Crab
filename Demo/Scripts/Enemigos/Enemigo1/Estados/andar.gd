@@ -1,16 +1,19 @@
 extends "res://Demo/Scripts/Globales/Estados/GlobalState.gd"
-
+class_name  AndarEnemigo
 # Definir los estados a los que puede cambiar
 @export var estado_atacar:State
 const RANGO_ATAQUE = 150.0 # Distancia para dejar de caminar e iniciar ataque
 
 func on_enter():
-	print("Estado: Caminando hacia el objetivo")
+	print("[Enemigos] Estado: Caminando hacia el objetivo")
 	# Aquí podrías poner: animation_player.play("walk")
 
 func state_process(delta: float) -> void:
 	# Ejecutamos el movimiento del padre
 	father.movimiento_enemigo1(delta)
+	
+	if father.objetivo_actual != null:
+		next_state = estado_atacar
 	
 	# Comprobar si hemos llegado a la posición de la base (Solo eje X)
 	if father.posicion_base_aliada != null:

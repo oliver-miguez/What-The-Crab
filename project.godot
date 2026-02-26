@@ -22,6 +22,7 @@ GlobalState="*uid://dtats3okdl6wq"
 [file_customization]
 
 folder_colors={
+"res://Arte/": "orange",
 "res://Demo/": "gray",
 "res://Escenas/": "red",
 "res://Scripts/": "red"
@@ -30,11 +31,13 @@ folder_colors={
 [global_group]
 
 Enemigos="Aqui guardamos todos los enemigos"
+Aliados=""
 
 [layer_names]
 
 2d_physics/layer_1="Mapa"
-2d_physics/layer_2="Personajes"
+2d_physics/layer_2="Aliados"
+2d_physics/layer_3="Enemigos"
 
 [physics]
 
@@ -42,4 +45,5 @@ Enemigos="Aqui guardamos todos los enemigos"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

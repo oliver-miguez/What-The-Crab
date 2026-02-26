@@ -1,25 +1,27 @@
 extends "res://Demo/Scripts/Globales/Estados/GlobalState.gd"
+class_name AndarAliado
 
-# Definir los estados a los que puede cambiar
 @export var estado_atacar:State
-const RANGO_ATAQUE = 150.0 # Distancia para dejar de caminar e iniciar ataque
+const RANGO_DETECCION_BASE = 50.0 # Rango para pasar de caminar a atacar
 
 func on_enter():
-	print("Estado: Caminando hacia el objetivo")
-	# Aquí podrías poner: animation_player.play("walk")
-
+	print("[Aliados] Caminando")
+	animation_player.play("caminar")
+	
 func state_process(delta: float) -> void:
 	# Ejecutamos el movimiento del padre
 	father.movimiento_aliado1(delta)
 	
-	# Comprobar si hemos llegado a la posición de la base (Solo eje X)
-	if father.posicion_base_enemiga != null:
-		var distancia_x = abs(father.global_position.x - father.posicion_base_enemiga.x)
+	# Prioridad: Enemigo detectado
+	if is_instance_valid(father.objetivo_actual):
+		next_state = estado_atacar
+		return
 		
-		# Log opcional para ver la distancia en consola (puedes borrarlo luego)
-		# print("Distancia X a la base: ", distancia_x)
-		
-		if distancia_x <= 15.0: # Si estamos a 15px de distancia horizontal
+	# Comprobar si hemos llegado a la base
+	var base = GlobalPosicionSpawneo.base_enemiga_nodo
+	if is_instance_valid(base):
+		var distancia_x = abs(father.global_position.x - base.global_position.x)
+		if distancia_x <= RANGO_DETECCION_BASE:
 			next_state = estado_atacar
 
 func on_exit():
